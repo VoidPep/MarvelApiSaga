@@ -1,12 +1,16 @@
-import Creator from './creator.schema'
+import Creator from './creators.schema'
 
-class CreatorService {
+class CreatorsService {
     async create(creator: any) {
         return await Creator.create(creator)
     }
 
     async findAll() {
         return await Creator.find()
+    }
+
+    async findById(id: string) {
+        return await Creator.findById(id)
     }
 
     async update(id: string, creator: any) {
@@ -18,4 +22,4 @@ class CreatorService {
     }
 }
 
-export default new CreatorService()
+export default new CreatorsService()

@@ -41,6 +41,16 @@ class CharactersController {
             res.status(400).json({ message: error.message });
         }
     }
+
+    async findById(req: Request, res: Response) {
+        try {
+            const id = req.params.id;
+            const response = await PersonagemService.findById(id);
+            res.status(200).json(response);
+        } catch (error) {
+            res.status(400).json({ message: error.message });
+        }
+    }
 }
 
 export default new CharactersController()

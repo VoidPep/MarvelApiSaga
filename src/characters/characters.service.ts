@@ -9,6 +9,14 @@ class CharactersService {
         return await Personagens.find();
     }
 
+    async findById(id: string) {
+        return await Personagens.findById(id);
+    }
+
+    async findByid(id: string) {
+        return await Personagens.findById(id);
+    }
+
     async update(id: string, personagem: any) {
         return await Personagens.findByIdAndUpdate(id, personagem);
     }
