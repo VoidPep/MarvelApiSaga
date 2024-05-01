@@ -1,20 +1,35 @@
 import PersonagemService from "./characters.service";
 import Constants from '../../constants';
-import { Request, Response } from 'express';
+import {Request, Response} from 'express';
 import axios from "axios";
 
 class CharactersController {
     async create(req: Request, res: Response) {
-
-        const url = `${Constants.MARVEL_API_URL}/characters?${Constants.MARVEL_API_PARAMS}`
-        const characters = await axios.get(url)
-
         try {
             const personagem = req.body;
             const response = await PersonagemService.create(personagem);
             res.status(201).json(response);
-        } catch (error) {
-            res.status(400).json({ message: error.message });
+        } catch (error: any) {
+            res.status(400).json({message: error.message});
+        }
+    }
+
+    async createMany(req: Request, res: Response) {
+        try {
+
+            const url = `${Constants.MARVEL_API_URL}/characters?${Constants.MARVEL_API_PARAMS}`
+            const characters = await axios.get(url)
+
+            const newCharacters = characters.data.data.results.map((character: any) => ({
+                imagem: `${character.thumbnail?.path}.${character.thumbnail?.extension}`,
+                nome: character.name,
+                descricao: character.description,
+            }))
+
+            const response = await PersonagemService.create(newCharacters);
+            res.status(201).json(response);
+        } catch (error: any) {
+            res.status(400).json({message: error.message});
         }
     }
 
@@ -22,8 +37,8 @@ class CharactersController {
         try {
             const response = await PersonagemService.findAll();
             res.status(200).json(response);
-        } catch (error) {
-            res.status(400).json({ message: error.message });
+        } catch (error: any) {
+            res.status(400).json({message: error.message});
         }
     }
 
@@ -33,8 +48,8 @@ class CharactersController {
             const personagem = req.body;
             const response = await PersonagemService.update(id, personagem);
             res.status(200).json(response);
-        } catch (error) {
-            res.status(400).json({ message: error.message });
+        } catch (error: any) {
+            res.status(400).json({message: error.message});
         }
     }
 
@@ -43,8 +58,8 @@ class CharactersController {
             const id = req.params.id;
             const response = await PersonagemService.delete(id);
             res.status(200).json(response);
-        } catch (error) {
-            res.status(400).json({ message: error.message });
+        } catch (error: any) {
+            res.status(400).json({message: error.message});
         }
     }
 
@@ -53,8 +68,8 @@ class CharactersController {
             const id = req.params.id;
             const response = await PersonagemService.findById(id);
             res.status(200).json(response);
-        } catch (error) {
-            res.status(400).json({ message: error.message });
+        } catch (error: any) {
+            res.status(400).json({message: error.message});
         }
     }
 }

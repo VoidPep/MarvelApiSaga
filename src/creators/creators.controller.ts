@@ -7,7 +7,7 @@ class CreatorsController {
             const creator = req.body;
             const response = await CreatorService.create(creator);
             res.status(201).json(response);
-        } catch (error) {
+        } catch (error: any) {
             res.status(400).json({message: error.message});
         }
     }
@@ -16,7 +16,7 @@ class CreatorsController {
         try {
             const response = await CreatorService.findAll();
             res.status(200).json(response);
-        } catch (error) {
+        } catch (error: any) {
             res.status(400).json({message: error.message});
         }
     }
@@ -27,7 +27,7 @@ class CreatorsController {
             const creator = req.body;
             const response = await CreatorService.update(id, creator);
             res.status(200).json(response);
-        } catch (error) {
+        } catch (error: any) {
             res.status(400).json({message: error.message});
         }
     }
@@ -37,7 +37,7 @@ class CreatorsController {
             const id = req.params.id;
             const response = await CreatorService.delete(id);
             res.status(200).json(response);
-        } catch (error) {
+        } catch (error: any) {
             res.status(400).json({message: error.message});
         }
     }
@@ -47,7 +47,7 @@ class CreatorsController {
             const id = req.params.id;
             const response = await CreatorService.findById(id);
             res.status(200).json(response);
-        } catch (error) {
+        } catch (error: any) {
             res.status(400).json({message: error.message});
         }
     }

@@ -1,4 +1,6 @@
 import Personagens from "./characters.schema";
+import axios from "axios";
+import Constants from '../../constants';
 
 class CharactersService {
     async create(personagem: any) {
@@ -9,19 +11,15 @@ class CharactersService {
         return await Personagens.find();
     }
 
-    async findById(id: string) {
+    async findById(id: any) {
         return await Personagens.findById(id);
     }
 
-    async findByid(id: string) {
-        return await Personagens.findById(id);
-    }
-
-    async update(id: string, personagem: any) {
+    async update(id: any, personagem: any) {
         return await Personagens.findByIdAndUpdate(id, personagem);
     }
 
-    async delete(id: string) {
+    async delete(id: any) {
         return await Personagens.findByIdAndDelete(id);
     }
 }
