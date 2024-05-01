@@ -16,6 +16,10 @@ class ComicsService {
     async delete(id: string) {
         return await Comics.findByIdAndDelete(id);
     }
+
+    async findById(id: string) {
+        return await Comics.findById(id);
+    }
 }
 
 export default new ComicsService()

@@ -11,6 +11,18 @@ routes.get('/personagens/:id', CharactersController.findById);
 routes.put('/personagens/:id', CharactersController.update);
 routes.delete('/personagens/:id', CharactersController.delete);
 
+routes.post('/comics', ComicsController.create);
+routes.get('/comics', ComicsController.findAll);
+routes.get('/comics/:id', ComicsController.findById);
+routes.put('/comics/:id', ComicsController.update);
+routes.delete('/comics/:id', ComicsController.delete);
+
+routes.post('/creators', CreatorsController.create);
+routes.get('/creators', CreatorsController.findAll);
+routes.get('/creators/:id', CreatorsController.findById);
+routes.put('/creators/:id', CreatorsController.update);
+routes.delete('/creators/:id', CreatorsController.delete);
+
 export{
     routes
 }
