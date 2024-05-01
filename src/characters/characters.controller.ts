@@ -1,7 +1,7 @@
-import PersonagemService from "./personagem.service";
+import PersonagemService from "./characters.service";
 import { Request, Response } from 'express';
 
-class PersonagemController {
+class CharactersController {
     async create(req: Request, res: Response) {
         try {
             const personagem = req.body;
@@ -43,4 +43,4 @@ class PersonagemController {
     }
 }
 
-export default new PersonagemController()
+export default new CharactersController()

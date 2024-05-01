@@ -1,6 +1,6 @@
-import Personagens from "./personagem.schema";
+import Personagens from "./characters.schema";
 
-class PersonagemService {
+class CharactersService {
     async create(personagem: any) {
         return await Personagens.create(personagem);
     }
@@ -18,4 +18,4 @@ class PersonagemService {
     }
 }
 
-export default new PersonagemService()
+export default new CharactersService()
