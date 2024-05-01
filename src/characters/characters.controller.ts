@@ -1,8 +1,14 @@
 import PersonagemService from "./characters.service";
+import Constants from '../../constants';
 import { Request, Response } from 'express';
+import axios from "axios";
 
 class CharactersController {
     async create(req: Request, res: Response) {
+
+        const url = `${Constants.MARVEL_API_URL}/characters?${Constants.MARVEL_API_PARAMS}`
+        const characters = await axios.get(url)
+
         try {
             const personagem = req.body;
             const response = await PersonagemService.create(personagem);
