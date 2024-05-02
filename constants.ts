@@ -5,7 +5,7 @@ export default class Constants {
 
     static readonly MARVEL_API_PARAMS = `ts=${Constants.TIME_STAMP}&apikey=${Constants.PUBLIC_KEY}&hash=${Constants.HASH}`;
 
-    static readonly MARVEL_API_URL = 'https://gateway.marvel.com/v1/public/series/489';
+    static readonly MARVEL_API_URL = 'https://gateway.marvel.com/v1/public';
 
     static readonly DATABASE_URL = 'mongodb://127.0.0.1:27017/marvel-api';
 }

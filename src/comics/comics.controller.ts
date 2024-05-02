@@ -2,7 +2,6 @@ import ComicsService from "./comics.service";
 import { Request, Response } from 'express';
 import Constants from "../../constants";
 import axios from "axios";
-import PersonagemService from "../characters/characters.service";
 
 class ComicsController {
     async create(req: Request, res: Response) {
@@ -26,7 +25,7 @@ class ComicsController {
 
     async createMany(req: Request, res: Response) {
 
-        const url = `${Constants.MARVEL_API_URL}/comics?${Constants.MARVEL_API_PARAMS}`
+        const url = `${Constants.MARVEL_API_URL}/series/489/comics?${Constants.MARVEL_API_PARAMS}`
         const comics = await axios.get(url)
 
         const newComics = comics.data.data.results.map((comic: any) => ({
@@ -75,12 +74,16 @@ class ComicsController {
         }
     }
 
-    async getComics(req: Request, res: Response) {
+    async filterByLetter(req: Request, res: Response) {
         try {
+            const letter = req.query.letter;
 
+            const url = `${Constants.MARVEL_API_URL}/series/489comics?${Constants.MARVEL_API_PARAMS}`
+            const comics = await axios.get(url)
 
+            const comicsFiltradas = comics.data.data.results.filter((comic: any) => comic.title.startsWith(letter))
 
-            res.status(200).json();
+            res.status(200).json(comicsFiltradas);
         } catch (error: any) {
             res.status(400).json({ message: error.message });
         }

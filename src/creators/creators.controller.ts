@@ -25,7 +25,7 @@ class CreatorsController {
 
     async createMany(req: Request, res: Response) {
         try {
-            const url = `${Constants.MARVEL_API_URL}/creators?${Constants.MARVEL_API_PARAMS}`
+            const url = `${Constants.MARVEL_API_URL}/series/489/creators?${Constants.MARVEL_API_PARAMS}`
             const characters = await axios.get(url)
 
             const newCreators = characters.data.data.results.map((creator: any) => ({
@@ -103,6 +103,21 @@ class CreatorsController {
             res.status(200).json({results: creatorComics});
         } catch (error: any) {
             res.status(400).json({message: error.message});
+        }
+    }
+
+    async getByComicsCount(req: Request, res: Response) {
+        try {
+            const count = req.query.count ?? 20
+
+            const url = `${Constants.MARVEL_API_URL}/series/489/creators?${Constants.MARVEL_API_PARAMS}`
+            const creators = await axios.get(url)
+
+            const response = creators.data.data.results.filter((creator: any) => creator.comics.available == count)
+
+            res.status(200).json(response);
+        } catch (error: any) {
+            res.status(400).json({ message: error.message });
         }
     }
 }
