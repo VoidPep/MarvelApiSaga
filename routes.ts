@@ -22,6 +22,7 @@ routes.delete('/comics/:id', ComicsController.delete);
 routes.post('/creators/createMany', CreatorsController.createMany);
 routes.post('/creators', CreatorsController.create);
 routes.get('/creators', CreatorsController.findAll);
+routes.get('/creators/getComics/:id', CreatorsController.getComics);
 routes.get('/creators/:id', CreatorsController.findById);
 routes.put('/creators/:id', CreatorsController.update);
 routes.delete('/creators/:id', CreatorsController.delete);
