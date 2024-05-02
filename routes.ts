@@ -8,6 +8,7 @@ const routes = Router();
 routes.post('/personagens', CharactersController.create);
 routes.post('/personagens/createMany', CharactersController.createMany);
 routes.get('/personagens/getStoriesByCharacterId/:id', CharactersController.getStoriesByCharacterId);
+routes.get('/personagens/getEventsByCharacterId/:id', CharactersController.getEventsByCharacterId);
 routes.get('/personagens/get', CharactersController.findAll);
 routes.get('/personagens/:id', CharactersController.findById);
 routes.put('/personagens/:id', CharactersController.update);

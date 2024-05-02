@@ -84,6 +84,17 @@ class CharactersController {
             res.status(400).json({message: error.message});
         }
     }
+
+    async getEventsByCharacterId(req: Request, res: Response) {
+        try {
+            const id = req.params.id;
+            const url = `${Constants.MARVEL_API_URL}/characters/${id}/events?${Constants.MARVEL_API_PARAMS}`
+            const stories = await axios.get(url)
+            res.status(200).json(stories.data.data.results.map((s:any) => ({ title: s.title, description: s.description })));
+        } catch (error: any) {
+            res.status(400).json({message: error.message});
+        }
+    }
 }
 
 export default new CharactersController()
